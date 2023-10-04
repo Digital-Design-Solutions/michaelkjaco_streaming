@@ -2,6 +2,7 @@
   "name": "Michael-Jaco-Streaming",
   "version": "3.0.0",
   "private": true,
+  "homepage": "https://Digital-Design-Solutions.github.io/michaelkjaco_streaming",
   "dependencies": {
     "@capacitor/android": "^4.0.0",
     "@capacitor/camera": "^4.0.0",
@@ -55,7 +56,9 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons|axios)/)\" --silent",
-    "test:all": "react-scripts test --transformIgnorePatterns \"node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)\" --silent --watchAll=false"
+    "test:all": "react-scripts test --transformIgnorePatterns \"node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)\" --silent --watchAll=false",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -77,6 +80,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^4.0.0",
+    "gh-pages": "^6.0.0",
     "react-scripts": "5.0.1"
   },
   "description": "Build a photo gallery app that runs on iOS, Android, and the web - with just one codebase."
