@@ -1,0 +1,55 @@
+.nav-icon {
+    color: #FFA903;
+    font-size: 42px;
+}
+
+.menu-icon {
+    color: #fff;
+    font-size: 22px;
+}
+
+.signup-btn {
+    --background: #FFA903;
+    font-size: 12px;
+}
+
+.content-container {
+    width: 120vw;
+    margin-left: -10%;
+    margin-top: -10%;
+    height: 100vh;
+    background-color: #fff;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    padding: 5% 0px 0px 0px;
+    position: absolute;
+    flex: 1;
+}
+
+.hero {
+    width: 100%;
+    height: 100%;
+    background-image: url("https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?auto=compress&cs=tinysrgb&w=800");
+    /* url("../../assets/home_bg.png"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: -25px;
+    position: relative;
+    overflow-y: visible;
+}
+
+li {
+    font-size: 14px;
+}
+
+@media(min-width: 768px) {
+    .subscription-img {
+        height: 750px;
+        width: 150vw;
+    }
+}
+
+@media(max-width: 768px) {
+    .subscription-img {
+    }
+}

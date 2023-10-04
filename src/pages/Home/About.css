@@ -1,0 +1,44 @@
+.about-container {
+    background-image: url("../../assets/snow_mountain.png");
+    width: 100vw;
+    height: 100%;
+    background-repeat: no-repeat;
+}
+
+.scheduleCardContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+/* Extra Small (xs) */
+@media (max-width: 576px) {
+    .scheduleCardContent {
+        justify-content: center;
+        padding-top: 2rem;
+    }
+}
+
+/* Small (sm) */
+@media (min-width: 577px) and (max-width: 768px) {
+    .scheduleCardContent {
+        justify-content: center;
+        padding-top: 2rem;
+    }
+}
+
+/* Medium (md) */
+@media (min-width: 769px) and (max-width: 992px) {
+ 
+}
+
+/* Large (lg) */
+@media (min-width: 993px) and (max-width: 1200px) {
+  
+}
+
+/* Extra Large (xl) */
+@media (min-width: 1201px) {
+
+}
