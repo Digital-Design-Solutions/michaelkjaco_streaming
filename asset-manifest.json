@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/michaelkjaco_streaming/static/css/main.3ebb6a47.css",
-    "main.js": "/michaelkjaco_streaming/static/js/main.6c5de016.js",
+    "main.js": "/michaelkjaco_streaming/static/js/main.8f3a7f6f.js",
     "static/js/738.076c7ce2.chunk.js": "/michaelkjaco_streaming/static/js/738.076c7ce2.chunk.js",
     "static/js/858.94a1993f.chunk.js": "/michaelkjaco_streaming/static/js/858.94a1993f.chunk.js",
     "static/js/372.aab60829.chunk.js": "/michaelkjaco_streaming/static/js/372.aab60829.chunk.js",
@@ -47,7 +47,7 @@
     "static/media/leaves_wings.png": "/michaelkjaco_streaming/static/media/leaves_wings.2bedbfe1975b6d6f1a11.png",
     "index.html": "/michaelkjaco_streaming/index.html",
     "main.3ebb6a47.css.map": "/michaelkjaco_streaming/static/css/main.3ebb6a47.css.map",
-    "main.6c5de016.js.map": "/michaelkjaco_streaming/static/js/main.6c5de016.js.map",
+    "main.8f3a7f6f.js.map": "/michaelkjaco_streaming/static/js/main.8f3a7f6f.js.map",
     "738.076c7ce2.chunk.js.map": "/michaelkjaco_streaming/static/js/738.076c7ce2.chunk.js.map",
     "858.94a1993f.chunk.js.map": "/michaelkjaco_streaming/static/js/858.94a1993f.chunk.js.map",
     "372.aab60829.chunk.js.map": "/michaelkjaco_streaming/static/js/372.aab60829.chunk.js.map",
@@ -66,6 +66,6 @@
   },
   "entrypoints": [
     "static/css/main.3ebb6a47.css",
-    "static/js/main.6c5de016.js"
+    "static/js/main.8f3a7f6f.js"
   ]
 }
