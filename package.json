@@ -2,7 +2,7 @@
   "name": "Michael-Jaco-Streaming",
   "version": "3.0.0",
   "private": true,
-  "homepage": "https://Digital-Design-Solutions.github.io/michaelkjaco_streaming",
+  "homepage": "https://Digital-Design-Solutions.github.io/michaelkjaco_streaming/",
   "dependencies": {
     "@capacitor/android": "^4.0.0",
     "@capacitor/camera": "^4.0.0",

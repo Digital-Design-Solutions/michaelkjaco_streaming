@@ -1,10 +1,15 @@
 import React from "react";
-import { IonButton, IonCol, IonHeader, IonIcon, IonRow } from "@ionic/react";
+import { IonButton, IonCol, IonHeader, IonIcon, IonRow, useIonRouter } from "@ionic/react";
 import { menu, personCircle, searchCircle } from "ionicons/icons";
 
 import "./Home.css";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../features/slice/user.slice";
 
 export const Header = () => {
+  const dispatch = useDispatch();
+  const router = useIonRouter();
+
   return (
     <IonHeader
       style={{
@@ -76,7 +81,12 @@ export const Header = () => {
             >
               <IonIcon icon={menu} className="menu-icon"></IonIcon>
             </div> */}
-          <IonButton className="signup-btn">sign up now</IonButton>
+          <IonButton className="signup-btn"
+          onClick={()=>{
+            dispatch(logoutUser())
+            router.push("/", "root");
+          }}
+          >sign up now</IonButton>
         </IonCol>
       </IonRow>
     </IonHeader>

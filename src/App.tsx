@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, HashRouter } from "react-router-dom";
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 
@@ -40,23 +40,25 @@ const App: React.FC = () => {
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet className="ion-no-margin">
-          {!isAuthenticated ? (
-            <>
-              <Route component={Login} path="/" />
-              <Route component={Register} path="/register" exact />
-              <Route exact path="*">
-                <Redirect to="/" />
-              </Route>
-            </>
-          ) : (
-            <>
-            <Route component={Home} path="/home" />
-              <Route component={Menu} path="/app" />
-              <Route exact path="/">
-                <Redirect to="/home" />
-              </Route>
-            </>
-          )}
+          <HashRouter>
+            {!isAuthenticated ? (
+              <>
+                <Route component={Login} path="/" />
+                <Route component={Register} path="/register" exact />
+                <Route exact path="*">
+                  <Redirect to="/" />
+                </Route>
+              </>
+            ) : (
+              <>
+                <Route component={Home} path="/home" />
+                <Route component={Menu} path="/app" />
+                <Route exact path="/">
+                  <Redirect to="/home" />
+                </Route>
+              </>
+            )}
+          </HashRouter>
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
