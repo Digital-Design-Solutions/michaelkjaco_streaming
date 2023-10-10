@@ -1,5 +1,5 @@
-import React from "react";
-import { IonCol, IonIcon, IonRow } from "@ionic/react";
+import React, { useState } from "react";
+import { IonButton, IonCol, IonIcon, IonRow } from "@ionic/react";
 import { chatboxEllipsesOutline, ellipse, mailOutline } from "ionicons/icons";
 
 import "./Home.css";
@@ -12,7 +12,46 @@ import DiscoverOrangeBg from "../../assets/discover_orange_bg.png";
 import LeaveWings from "../../assets/leaves_wings.png";
 import MichaelJaco from "../../assets/michael_jaco.png";
 
+const topSlider = { day: "THURS", date: "09", month: "AUG", key: "top" };
+const middleSlider = { day: "THURS", date: "17", month: "AUG", key: "middle" };
+const bottomSlider = { day: "THURS", date: "28", month: "AUG", key: "bottom" };
+
 export const About = () => {
+  const [eventSlider, setEventSlider] = useState({
+    topSlider,
+    middleSlider,
+    bottomSlider,
+  });
+
+  const onBackClick = () => {
+    const top = eventSlider?.middleSlider;
+    const middle = eventSlider?.bottomSlider;
+    const bottom = eventSlider?.topSlider;
+    setEventSlider({
+      topSlider: top,
+      middleSlider: middle,
+      bottomSlider: bottom,
+    });
+  };
+
+  const onForwardClick = () => {
+    const top = eventSlider?.bottomSlider;
+    const middle = eventSlider?.topSlider;
+    const bottom = eventSlider?.middleSlider;
+    setEventSlider({
+      topSlider: top,
+      middleSlider: middle,
+      bottomSlider: bottom,
+    });
+  };
+
+  const currentActiveIndex =
+    eventSlider?.middleSlider?.key === "top"
+      ? 0
+      : eventSlider?.middleSlider?.key === "middle"
+      ? 1
+      : 2;
+
   return (
     <div style={{ position: "relative", marginLeft: "8.4%" }}>
       <IonRow
@@ -94,7 +133,7 @@ export const About = () => {
             height: "auto",
           }}
         />
-        <IonCol         
+        <IonCol
           size-xs="10"
           size-sm="10"
           size-md="4"
@@ -134,38 +173,50 @@ export const About = () => {
           size-xs="12"
           size-sm="12"
           size-md="7"
-          className="scheduleCardContent"          
+          className="scheduleCardContent"
         >
           <div style={{ marginRight: "7%", position: "relative" }}>
             <div style={{ position: "relative", opacity: 0.85 }}>
               <ScheduleCard
-                eventDate={{ day: "THURS", date: "09", month: "AUG" }}
+                eventDate={eventSlider.topSlider}
                 type="secondary"
               />
             </div>
             <br />
             <div style={{ position: "relative", opacity: 0.85 }}>
               <ScheduleCard
-                eventDate={{ day: "THURS", date: "28", month: "AUG" }}
+                eventDate={eventSlider.bottomSlider}
                 type="secondary"
               />
             </div>
 
             <div style={{ position: "absolute", top: "25%" }}>
               <ScheduleCard
-                eventDate={{ day: "THURS", date: "17", month: "AUG" }}
+                eventDate={eventSlider.middleSlider}
                 type="primary"
               />
             </div>
           </div>
-          <SliderNav />
+          <SliderNav
+            onBackClick={onBackClick}
+            onForwardClick={onForwardClick}
+            currentActiveIndex={currentActiveIndex}
+          />
         </IonCol>
       </IonRow>
     </div>
   );
 };
 
-const SliderNav = () => {
+const SliderNav = ({
+  onBackClick,
+  onForwardClick,
+  currentActiveIndex,
+}: {
+  onBackClick: () => void;
+  onForwardClick: () => void;
+  currentActiveIndex: number;
+}) => {
   return (
     <div
       style={{
@@ -175,14 +226,16 @@ const SliderNav = () => {
         marginTop: "10%",
       }}
     >
-      <img
-        src={PlayButtonTop}
-        style={{
-          width: "25px",
-          height: "25px",
-          filter: "brightness(255) invert(1)",
-        }}
-      />
+      <IonButton onClick={onBackClick} fill="default">
+        <img
+          src={PlayButtonTop}
+          style={{
+            width: "25px",
+            height: "25px",
+            filter: "brightness(255) invert(1)",
+          }}
+        />
+      </IonButton>
       <div
         style={{
           padding: "16px 0px",
@@ -190,25 +243,24 @@ const SliderNav = () => {
           flexDirection: "column",
         }}
       >
-        {[
-          "rgba(0,0,0,0.4)",
-          "rgba(0,0,0,0.4)",
-          "#000",
-          "rgba(0,0,0,0.4)",
-          "rgba(0,0,0,0.4)",
-        ].map((item, index) => (
-          <SliderDot color={item} uniqueKey={index} />
+        {new Array(3).fill(0).map((item, index) => (
+          <SliderDot
+            color={currentActiveIndex === index ? "#000" : "rgba(0,0,0,0.4)"}
+            uniqueKey={index}
+          />
         ))}
       </div>
-      <img
-        src={PlayButtonTop}
-        style={{
-          width: "25px",
-          height: "25px",
-          filter: "brightness(255) invert(1)",
-          transform: "rotate(180deg)",
-        }}
-      />
+      <IonButton onClick={onForwardClick} fill="default">
+        <img
+          src={PlayButtonTop}
+          style={{
+            width: "25px",
+            height: "25px",
+            filter: "brightness(255) invert(1)",
+            transform: "rotate(180deg)",
+          }}
+        />
+      </IonButton>
     </div>
   );
 };

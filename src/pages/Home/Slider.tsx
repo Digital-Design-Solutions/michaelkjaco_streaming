@@ -91,7 +91,7 @@ export const Slider = () => {
           margin: "0px 2% 0px 2%"
         }}
       >
-        <IonButton onClick={onBackClick} fill="default" style={{backgroundColor: 'lightgreen'}}>
+        <IonButton onClick={onBackClick} fill="default">
           <img
             src={PlayButtonRight}
             style={{
