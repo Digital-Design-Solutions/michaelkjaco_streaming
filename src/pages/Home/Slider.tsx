@@ -86,11 +86,12 @@ export const Slider = () => {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "space-around",
+          justifyContent: "space-evenly",
           position: "relative",
+          margin: "0px 2% 0px 2%"
         }}
       >
-        <IonButton onClick={onBackClick} fill="default">
+        <IonButton onClick={onBackClick} fill="default" style={{backgroundColor: 'lightgreen'}}>
           <img
             src={PlayButtonRight}
             style={{
@@ -130,7 +131,7 @@ export const Slider = () => {
   );
 };
 
-const ThumbnailCard = ({ imageUrl }: { imageUrl?: string }) => {
+export const ThumbnailCard = ({ imageUrl }: { imageUrl?: string }) => {
   return (
     <div
       style={{
