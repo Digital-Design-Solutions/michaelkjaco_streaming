@@ -1,5 +1,5 @@
 import React from "react";
-import { IonCol, IonContent, IonIcon, IonPage, IonRow } from "@ionic/react";
+import { IonContent, IonPage } from "@ionic/react";
 
 import "./Home.css";
 import { Header } from "./Header";

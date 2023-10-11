@@ -10,17 +10,7 @@ import TelegramLogo from "../../assets/logo/telegram_logo.png";
 export const SideSocialLinks = () => {
   return (
     <div
-      style={{
-        position: "fixed",
-        top: "20%",
-        right: 0,
-        backgroundColor: "#C7C7C7",
-        padding: "8px 4px 0px 12px",
-        display: "flex",
-        flexDirection: "column",
-        borderTopLeftRadius: "8px",
-        borderBottomLeftRadius: "8px",
-      }}
+      className="side-social-link-container"
     >
       <div
         style={{
