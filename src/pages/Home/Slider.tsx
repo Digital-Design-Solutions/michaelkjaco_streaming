@@ -1,74 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IonButton, IonIcon } from "@ionic/react";
 import { playCircle } from "ionicons/icons";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+// import required modules
+import { EffectCoverflow, Pagination } from "swiper/modules";
 
+// Import Swiper styles
 import "swiper/css";
-import "@ionic/react/css/ionic-swiper.css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
-import "./Home.css";
 import watchText from "../../assets/watch_txt.png";
 import sliderImg1 from "../../assets/slider_1.jpeg";
-import { SliderDots } from "./SliderDots";
 import PlayButtonRight from "../../assets/play_button_right.png";
 import "./Slider.css";
 
-const img1 = "";
-const img2 = "";
-const img3 = sliderImg1;
-
 export const Slider = () => {
-  const [getSlider, setSlider] = useState({ img1, img2, img3 });
+  const [showSwiper, setShowSwiper] = useState(false);
+
+  const swiperRef = useRef<any>();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowSwiper(true);
+    }, 100);
+  }, []);
 
   const onBackClick = () => {
-    let payload = getSlider;
-    if (getSlider.img3 !== "") {
-      payload = {
-        ...payload,
-        img1: payload?.img3,
-        img3: "",
-      };
-    } else if (getSlider.img1 !== "") {
-      payload = {
-        ...payload,
-        img1: "",
-        img2: payload?.img1,
-      };
+    const currentActiveIndex = swiperRef?.current?.swiper?.activeIndex;
+    if (currentActiveIndex >= 1) {
+      swiperRef?.current.swiper.slideTo(currentActiveIndex - 1);
     } else {
-      payload = {
-        ...payload,
-        img2: "",
-        img3: payload?.img2,
-      };
+      swiperRef?.current.swiper.slideTo(0);
     }
-    setSlider(payload);
   };
 
   const onForwardClick = () => {
-    let payload = getSlider;
-    if (getSlider.img3 !== "") {
-      payload = {
-        ...payload,
-        img2: payload?.img3,
-        img3: "",
-      };
-    } else if (getSlider.img2 !== "") {
-      payload = {
-        ...payload,
-        img2: "",
-        img1: payload?.img2,
-      };
+    const currentActiveIndex = swiperRef?.current?.swiper?.activeIndex;
+    if (currentActiveIndex <= 1) {
+      swiperRef?.current.swiper.slideTo(currentActiveIndex + 1);
     } else {
-      payload = {
-        ...payload,
-        img1: "",
-        img3: payload?.img1,
-      };
+      swiperRef?.current.swiper.slideTo(2);
     }
-    setSlider(payload);
   };
 
-  const currentActiveIndex =
-    getSlider?.img1 !== "" ? 0 : getSlider?.img3 !== "" ? 1 : 2;
   return (
     <>
       <div
@@ -80,53 +57,88 @@ export const Slider = () => {
       >
         <img src={watchText} style={{ width: "40%", height: "auto" }} />
       </div>
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-evenly",
-          position: "relative",
-          margin: "0px 2% 0px 2%"
-        }}
-      >
-        <IonButton onClick={onBackClick} fill="default">
-          <img
-            src={PlayButtonRight}
-            style={{
-              width: "25px",
-              height: "25px",
-              transform: "rotate(180deg)",
-            }}
-          />
-        </IonButton>
-        <ThumbnailCard imageUrl={getSlider?.img1} />
-        <ThumbnailCard imageUrl={getSlider?.img2} />
+      {!showSwiper ? (
         <div
           style={{
-            position: "absolute",
-            margin: "auto",
-            left: "35%",
-            bottom: "-12%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <ThumbnailCard imageUrl={getSlider?.img3} />
+          <h1 style={{ fontSize: "18px", color: "black" }}>Loading...</h1>
         </div>
-        <IonButton onClick={onForwardClick} fill="default">
-          <img
-            src={PlayButtonRight}
-            style={{ width: "25px", height: "25px" }}
-          />
-        </IonButton>
-      </div>
-      <SliderDots activeIndex={currentActiveIndex} />
+      ) : (
+        <>
+          <div className="slider-outer-container">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-evenly",
+                position: "relative",
+                margin: "0px 2% 0px 2%",
+              }}
+            >
+              <IonButton onClick={onBackClick} fill="default">
+                <img
+                  src={PlayButtonRight}
+                  style={{
+                    width: "25px",
+                    height: "25px",
+                    transform: "rotate(180deg)",
+                  }}
+                />
+              </IonButton>
 
-      <div className="watchmore-btn-outer-container">
-        <button className="watchmore-btn-inner-container">
-        <span className="watchmore-btn"></span>
-        </button>
-      </div>
+              <>
+                <Swiper
+                  effect={"coverflow"}
+                  grabCursor={true}
+                  centeredSlides={true}
+                  coverflowEffect={{
+                    rotate: 0,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: true,
+                  }}
+                  spaceBetween={0}
+                  slidesPerView={3}
+                  modules={[EffectCoverflow, Pagination]}
+                  navigation
+                  pagination={{ clickable: true }}
+                  className="mySwiper"
+                  initialSlide={1}
+                  ref={swiperRef}
+                >
+                  <SwiperSlide>
+                    <ThumbnailCard imageUrl={""} />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <ThumbnailCard imageUrl={sliderImg1} />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <ThumbnailCard imageUrl={""} />
+                  </SwiperSlide>
+                </Swiper>
+              </>
+              <IonButton onClick={onForwardClick} fill="default">
+                <img
+                  src={PlayButtonRight}
+                  style={{ width: "25px", height: "25px" }}
+                />
+              </IonButton>
+            </div>
+          </div>
+
+          <div className="watchmore-btn-outer-container">
+            <button className="watchmore-btn-inner-container">
+              <span className="watchmore-btn"></span>
+            </button>
+          </div>
+        </>
+      )}
     </>
   );
 };

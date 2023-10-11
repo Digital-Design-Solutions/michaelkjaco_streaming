@@ -1,28 +1,26 @@
-.watchmore-btn-outer-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+.swiper {
+  width: 100% !important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
 }
 
-.watchmore-btn-inner-container {
-    border-radius: 4px;
-    color: #fff;
-    font-size: 12px;
-    background-color: #1A315C;
-    width: 110px;
-    min-height: 30px;
+.swiper-slide {
+  background-position: center !important;
+  background-size: cover !important;
+  /* width: 300px !important; */
+  /* height: 300px; */
 }
 
-.watchmore-btn-inner-container::after {
-    content: "WATCH MORE";
+.swiper-slide img {
+  display: block !important;
+  width: 100% !important;
 }
 
-.watchmore-btn-inner-container:hover::after {
-    content: "IWC LOGIN";
+.slider-outer-container {
+  width: 80% !important;
+  margin-left: 10% !important;
 }
 
-.watchmore-btn-inner-container:hover {
-    background: #FFA903;
+.swiper-button-next, .swiper-button-prev {
+  display: none;
 }
