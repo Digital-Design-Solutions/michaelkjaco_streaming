@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   IonButton,
   IonCardContent,
   IonCardHeader,
   IonCheckbox,
 } from "@ionic/react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+// import required modules
+import { EffectCoverflow, Pagination } from "swiper/modules";
 
 import "./Subscription.css";
 import { SliderDots } from "./SliderDots";
 import LeaveWings from "../../assets/leaves_wings.png";
 import PlayButtonRight from "../../assets/play_button_right.png";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import './Slider.css';
 
 const listData = [
   "Access to IWC Social Platform",
@@ -27,65 +38,33 @@ const listData1 = [
   "Save 10% off Michael Jac`s Gear",
 ];
 
-const initialData = {
-  primary: {
-    header: "IWC Pay-Per-Video",
-    footer: "$5.00 Per Video",
-    listData,
-  },
-  left: {
-    header: "IWC Silver Membership",
-    footer: "$145.00 Per Video",
-    listData: listData1,
-  },
-  right: {
-    header: "IWC Gold Membership",
-    footer: "$287.50 Per Video",
-    listData: listData1,
-  },
-};
 export const Subscription = () => {
-  const [getListData, setListData] = useState(initialData);
+  const [showSwiper, setShowSwiper] = useState(false);
+
+  const swiperRef = useRef<any>();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowSwiper(true);
+    }, 100);
+  }, []);
 
   const onBackClick = () => {
-    let payload = getListData;
-    if (getListData.primary.header === "IWC Pay-Per-Video") {
-      payload = {
-        primary: getListData.right,
-        left: getListData.primary,
-        right: getListData.left,
-      };
-    } else if (getListData.primary.header === "IWC Gold Membership") {
-      payload = {
-        primary: getListData.left,
-        left: getListData.right,
-        right: getListData.primary,
-      };
+    const currentActiveIndex = swiperRef?.current?.swiper?.activeIndex;
+    if (currentActiveIndex >= 1) {
+      swiperRef?.current.swiper.slideTo(currentActiveIndex - 1);
     } else {
-      payload = initialData;
+      swiperRef?.current.swiper.slideTo(0);
     }
-    setListData(payload);
   };
 
   const onForwardClick = () => {
-    const isPayPerPrimary = getListData.primary.header === "IWC Pay-Per-Video";
-    let payload = getListData;
-    if (isPayPerPrimary) {
-      payload = {
-        primary: getListData.left,
-        left: getListData.right,
-        right: getListData.primary,
-      };
-    } else if (getListData.primary.header === "IWC Silver Membership") {
-      payload = {
-        primary: getListData.right,
-        left: getListData.primary,
-        right: getListData.left,
-      };
+    const currentActiveIndex = swiperRef?.current?.swiper?.activeIndex;
+    if (currentActiveIndex <= 1) {
+      swiperRef?.current.swiper.slideTo(currentActiveIndex + 1);
     } else {
-      payload = initialData;
+      swiperRef?.current.swiper.slideTo(2);
     }
-    setListData(payload);
   };
 
   return (
@@ -117,71 +96,97 @@ export const Subscription = () => {
           style={{ width: "150px", height: "50px" }}
         />
       </div>
-      <div
-        style={{
-          display: "flex",
-          flex: 1,
-          flexDirection: "row",
-          justifyContent: "space-evenly",
-          position: "relative",
-          alignItems: "center",
-          margin: "2% 5%",
-        }}
-      >
-        <IonButton onClick={onBackClick} fill="default">
-          <img
-            src={PlayButtonRight}
-            style={{
-              width: "25px",
-              height: "25px",
-              transform: "rotate(180deg)",
-            }}
-          />
-        </IonButton>
-
-        <SubscriptionCard
-          header={getListData.left.header}
-          body={getListData.left.listData}
-          footer={getListData.left.footer}
-          headerColor="#00000029"
-          isPrimary={false}
-        />
+      {!showSwiper ? (
         <div
           style={{
-            position: "absolute",
-            width: "80%",
-            height: "100%",
+            display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            top: "8%",
           }}
         >
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <SubscriptionCard
-              header={getListData.primary.header}
-              body={getListData.primary.listData}
-              footer={getListData.primary.footer}
-              headerColor=""
-              isPrimary={true}
-            />
+          <h1 style={{ fontSize: "18px", color: "black" }}>Loading...</h1>
+        </div>
+      ) : (
+        <div className="slider-outer-container">
+          <div
+            style={{
+              display: "flex",
+              flex: 1,
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+              position: "relative",
+              alignItems: "center",
+              margin: "2% 5%",
+            }}
+          >
+            <IonButton onClick={onBackClick} fill="default">
+              <img
+                src={PlayButtonRight}
+                style={{
+                  width: "25px",
+                  height: "25px",
+                  transform: "rotate(180deg)",
+                }}
+              />
+            </IonButton>
+
+            <>
+              <Swiper
+                effect={"coverflow"}
+                grabCursor={true}
+                centeredSlides={true}
+                coverflowEffect={{
+                  rotate: 0,
+                  stretch: 0,
+                  depth: 100,
+                  modifier: 1,
+                  slideShadows: false,
+                }}
+                spaceBetween={0}
+                slidesPerView={3}
+                modules={[EffectCoverflow, Pagination]}
+                navigation
+                pagination={{ clickable: true }}
+                className="mySwiper"
+                initialSlide={1}
+                ref={swiperRef}
+              >
+                <SwiperSlide>
+                  <SubscriptionCard
+                    header={"IWC Silver Membership"}
+                    body={listData1}
+                    footer={"$145.00 Per Video"}
+                    headerColor="#00000029"
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <SubscriptionCard
+                    header={"IWC Pay-Per-Video"}
+                    body={listData}
+                    footer={"$5.00 Per Video"}
+                    headerColor=""
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <SubscriptionCard
+                    header={"IWC Gold Membership"}
+                    body={listData1}
+                    footer={"$287.50 Per Video"}
+                    headerColor="rgba(255,215,0, 0.5)"
+                  />
+                </SwiperSlide>
+              </Swiper>
+            </>
+
+            <IonButton onClick={onForwardClick} fill="default">
+              <img
+                src={PlayButtonRight}
+                style={{ width: "25px", height: "25px" }}
+              />
+            </IonButton>
           </div>
         </div>
-
-        <SubscriptionCard
-          header={getListData.right.header}
-          body={getListData.right.listData}
-          footer={getListData.right.footer}
-          headerColor="rgba(255,215,0, 0.5)"
-          isPrimary={false}
-        />
-
-        <IonButton onClick={onForwardClick} fill="default">
-          <img
-            src={PlayButtonRight}
-            style={{ width: "25px", height: "25px" }}
-          />
-        </IonButton>
-      </div>
-      <SliderDots />
+      )}
     </div>
   );
 };
@@ -191,24 +196,17 @@ type IProps = {
   body: string[];
   footer: string;
   headerColor: string;
-  isPrimary: boolean;
 };
 
-const SubscriptionCard = ({
-  header,
-  body,
-  footer,
-  headerColor,
-  isPrimary,
-}: IProps) => (
+const SubscriptionCard = ({ header, body, footer, headerColor }: IProps) => (
   <div
     style={{
       display: "flex",
       flexDirection: "column",
-      width: "30%",
       padding: "15px 0px 25px 0px",
-      ...(isPrimary && { background: "#fff", zIndex: 9 }),
       boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)",
+      backgroundColor: "#fff",
+      width: "100%",
     }}
   >
     <IonCardHeader
