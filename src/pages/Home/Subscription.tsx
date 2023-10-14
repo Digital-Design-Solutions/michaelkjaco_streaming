@@ -11,7 +11,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 
 import "./Subscription.css";
-import { SliderDots } from "./SliderDots";
 import LeaveWings from "../../assets/leaves_wings.png";
 import PlayButtonRight from "../../assets/play_button_right.png";
 

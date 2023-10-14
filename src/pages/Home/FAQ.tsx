@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 import LeavesWings from "../../assets/leaves_wings.png";
-import { IonIcon } from "@ionic/react";
-import { addCircle } from "ionicons/icons";
+import {
+  IonAccordion,
+  IonAccordionGroup,
+  IonIcon,
+} from "@ionic/react";
+import { addCircle, removeCircle } from "ionicons/icons";
 import FAQBG from "../../assets/Jaco-Images/faq_bg.png";
 
 const listData = [
@@ -14,39 +18,75 @@ const listData = [
 ];
 
 export const FAQ = () => {
+  const [openedItem, setOpenedItem] = useState<null | number>(null);
+
   return (
     <div
       style={{
         background: `url(${FAQBG})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "100% 100%",
-        backgroundPosition: 'cover',
+        backgroundPosition: "cover",
         width: "100%",
-        height: "500px",
+        height: "100%",
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
       }}
     >
-      <div
+      <IonAccordionGroup
         style={{
           alignItems: "center",
           padding: "2% 0px 0px 0px",
           alignSelf: "center",
           display: "flex",
-          flexDirection: 'column'
+          flexDirection: "column",
+          width: "40%",
         }}
       >
         <h2>Frequently Asked Questions</h2>
         <img src={LeavesWings} style={{ width: "100px", height: "45px" }} />
-        {listData?.map((item) => (
-          <FAQCard label={item} />
+        {listData?.map((item, index) => (
+          <IonAccordion
+            value={index.toString()}
+            style={{ backgroundColor: "transparent" }}
+            onClick={() =>
+              setOpenedItem((prevItem) => (prevItem === index ? null : index))
+            }
+          >
+            <div slot="header">
+              <FAQCard label={item} isOpened={openedItem === index || false} />
+            </div>
+            <div
+              className="ion-padding"
+              slot="content"
+              style={{
+                backgroundColor: "rgba(0,0,0,0.6)",
+                color: "#fff",
+                borderRadius: "8px",
+              }}
+            >
+              Michael Jaco, Former Navy Seal & CIA Operative shares his
+              life-altering experiences to make you better at leadership,
+              business, personal relationships, health, fitness, and more. He
+              can also open your mind to extremely powerful intuitive,
+              spiritual, and cognitive training that helped him survive and
+              thrive after his military and government service. From one on one
+              coaching, video courses, books, events, and seminars, Michael can
+              help you take your chosen path to the next level of success and
+              happiness. As a master training specialist Michael has trained
+              thousands of people in extremely high levels of personal
+              development. Michael’s mission and life focus are to help anyone
+              quickly and easily develop the skills for success in all aspects
+              of human achievement.
+            </div>
+          </IonAccordion>
         ))}
-      </div>
+      </IonAccordionGroup>
     </div>
   );
 };
 
-const FAQCard = ({ label }: { label: string }) => {
+const FAQCard = ({ label, isOpened }: { label: string; isOpened: boolean }) => {
   return (
     <div
       style={{
@@ -59,11 +99,11 @@ const FAQCard = ({ label }: { label: string }) => {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-start",
-        backgroundColor: '#fff'
+        backgroundColor: "#fff",
       }}
     >
       <IonIcon
-        icon={addCircle}
+        icon={isOpened ? removeCircle : addCircle}
         style={{ fontSize: "32px", color: "#1A315C" }}
       />
 

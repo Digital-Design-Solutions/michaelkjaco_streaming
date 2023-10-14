@@ -17,7 +17,9 @@ const Home = () => {
     <IonPage>
       <Header />
       <IonContent>
+        <div>
         <img src={MountainImage} style={{ width: "100%", height: "100%" }} />
+        </div>
         <div className="content-container">
           <Slider />
           <About />
