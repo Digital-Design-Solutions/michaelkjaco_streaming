@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IonButton, IonCol, IonIcon, IonRow } from "@ionic/react";
-import { chatboxEllipsesOutline, ellipse, mailOutline } from "ionicons/icons";
+import { chatboxEllipsesOutline, mailOutline } from "ionicons/icons";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+// import required modules
+import { EffectCoverflow } from "swiper/modules";
 
 import "./Home.css";
 import "./About.css";
@@ -11,46 +15,43 @@ import PlayButtonTop from "../../assets/play_button_top.png";
 import DiscoverOrangeBg from "../../assets/discover_orange_bg.png";
 import LeaveWings from "../../assets/leaves_wings.png";
 import MichaelJaco from "../../assets/michael_jaco.png";
-
-const topSlider = { day: "THURS", date: "09", month: "AUG", key: "top" };
-const middleSlider = { day: "THURS", date: "17", month: "AUG", key: "middle" };
-const bottomSlider = { day: "THURS", date: "28", month: "AUG", key: "bottom" };
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { SliderDots } from "./SliderDots";
+// import "./Slider.css";
 
 export const About = () => {
-  const [eventSlider, setEventSlider] = useState({
-    topSlider,
-    middleSlider,
-    bottomSlider,
-  });
+  const [showSwiper, setShowSwiper] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(1);
+
+  const swiperRef = useRef<any>();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowSwiper(true);
+    }, 100);
+  }, []);
 
   const onBackClick = () => {
-    const top = eventSlider?.middleSlider;
-    const middle = eventSlider?.bottomSlider;
-    const bottom = eventSlider?.topSlider;
-    setEventSlider({
-      topSlider: top,
-      middleSlider: middle,
-      bottomSlider: bottom,
-    });
+    const currentActiveIndex = swiperRef?.current?.swiper?.activeIndex;
+    if (currentActiveIndex >= 1) {
+      swiperRef?.current.swiper.slideTo(currentActiveIndex - 1);
+    } else {
+      swiperRef?.current.swiper.slideTo(0);
+    }
   };
 
   const onForwardClick = () => {
-    const top = eventSlider?.bottomSlider;
-    const middle = eventSlider?.topSlider;
-    const bottom = eventSlider?.middleSlider;
-    setEventSlider({
-      topSlider: top,
-      middleSlider: middle,
-      bottomSlider: bottom,
-    });
+    const currentActiveIndex = swiperRef?.current?.swiper?.activeIndex;
+    if (currentActiveIndex <= 1) {
+      swiperRef?.current.swiper.slideTo(currentActiveIndex + 1);
+    } else {
+      swiperRef?.current.swiper.slideTo(2);
+    }
   };
-
-  const currentActiveIndex =
-    eventSlider?.middleSlider?.key === "top"
-      ? 0
-      : eventSlider?.middleSlider?.key === "middle"
-      ? 1
-      : 2;
 
   return (
     <div style={{ position: "relative", marginLeft: "8.4%" }}>
@@ -169,40 +170,81 @@ export const About = () => {
           </span>
         </IonCol>
 
-        <IonCol
-          size-xs="12"
-          size-sm="12"
-          size-md="7"
-          className="scheduleCardContent"
-        >
-          <div style={{ marginRight: "7%", position: "relative" }}>
-            <div style={{ position: "relative", opacity: 0.85 }}>
-              <ScheduleCard
-                eventDate={eventSlider.topSlider}
-                type="secondary"
-              />
-            </div>
-            <br />
-            <div style={{ position: "relative", opacity: 0.85 }}>
-              <ScheduleCard
-                eventDate={eventSlider.bottomSlider}
-                type="secondary"
-              />
-            </div>
-
-            <div style={{ position: "absolute", top: "25%" }}>
-              <ScheduleCard
-                eventDate={eventSlider.middleSlider}
-                type="primary"
-              />
-            </div>
+        {!showSwiper ? (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <h1 style={{ fontSize: "18px", color: "black" }}>Loading...</h1>
           </div>
-          <SliderNav
-            onBackClick={onBackClick}
-            onForwardClick={onForwardClick}
-            currentActiveIndex={currentActiveIndex}
-          />
-        </IonCol>
+        ) : (
+          <IonCol
+            size-xs="12"
+            size-sm="12"
+            size-md="7"
+            className="scheduleCardContent"
+          >
+            <div
+              style={{
+                marginRight: "7%",
+                position: "relative",
+                width: "50%",
+                height: "100%",
+              }}
+            >
+              <Swiper
+                effect={"coverflow"}
+                grabCursor={true}
+                centeredSlides={true}
+                coverflowEffect={{
+                  rotate: 0,
+                  stretch: 0,
+                  depth: 100,
+                  modifier: 1,
+                  slideShadows: false,
+                }}
+                spaceBetween={0}
+                slidesPerView={3}
+                modules={[EffectCoverflow]}
+                navigation
+                direction="vertical"
+                className="mySwiper"
+                initialSlide={1}
+                ref={swiperRef}
+                onSlideChange={(swiper: any) =>
+                  setActiveSlide(swiper?.activeIndex)
+                }
+              >
+                <SwiperSlide>
+                  <ScheduleCard
+                    eventDate={{ day: "THURS", date: "09", month: "AUG" }}
+                    isActive={activeSlide == 0}
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <ScheduleCard
+                    eventDate={{ day: "THURS", date: "17", month: "AUG" }}
+                    isActive={activeSlide == 1}
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <ScheduleCard
+                    eventDate={{ day: "THURS", date: "28", month: "AUG" }}
+                    isActive={activeSlide == 2}
+                  />
+                </SwiperSlide>
+              </Swiper>
+            </div>
+            <SliderNav
+              onBackClick={onBackClick}
+              onForwardClick={onForwardClick}
+              currentActiveIndex={activeSlide}
+            />
+          </IonCol>
+        )}
       </IonRow>
     </div>
   );
@@ -223,6 +265,7 @@ const SliderNav = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        justifyContent: "center",
         marginTop: "10%",
       }}
     >
@@ -244,7 +287,7 @@ const SliderNav = ({
         }}
       >
         {new Array(3).fill(0).map((item, index) => (
-          <SliderDot
+          <SliderDots
             color={currentActiveIndex === index ? "#000" : "rgba(0,0,0,0.4)"}
             uniqueKey={index}
           />
@@ -265,32 +308,12 @@ const SliderNav = ({
   );
 };
 
-const SliderDot = ({
-  color,
-  uniqueKey,
-}: {
-  color: string;
-  uniqueKey: number;
-}) => {
-  return (
-    <IonIcon
-      key={uniqueKey?.toString()}
-      icon={ellipse}
-      style={{
-        color,
-        fontSize: "16px",
-        margin: "1px 0px",
-      }}
-    />
-  );
-};
-
 const ScheduleCard = ({
   eventDate,
-  type,
+  isActive,
 }: {
   eventDate: { day: string; date: string; month: string };
-  type: "primary" | "secondary";
+  isActive: boolean;
 }) => {
   const { day, date, month } = eventDate;
   return (
@@ -301,13 +324,12 @@ const ScheduleCard = ({
         borderBottomLeftRadius: "6px",
         padding: "16px 16px 16px 5%",
         display: "flex",
-        minWidth: "25vw",
-        marginLeft: type === "primary" ? "-20%" : "0px",
+        width: "100%",
+        height: "100%",
         flexDirection: "row",
         justifyContent: "space-evenly",
         backgroundColor: "#1A315C",
-        boxShadow:
-          type === "primary" ? "12px 0px 25px 12px rgba(200,0,0,0.7)" : "",
+        boxShadow: isActive ? "12px 0px 25px 12px rgba(200,0,0,0.7)" : "",
       }}
     >
       {/* date */}
@@ -346,16 +368,7 @@ const ScheduleCard = ({
 
       {/* live info */}
       <IonCol style={{ flex: 1.5, display: "flex", flexDirection: "column" }}>
-        {/* <IonIcon name={tvOutline} style={{ fontSize: "30px", color: "red" }} /> */}
-        <img
-          src={LiveTv}
-          alt="live_tv"
-          style={{
-            width: "25px",
-            height: "25px",
-            margin: "15px 0px",
-          }}
-        />
+        <img src={LiveTv} alt="live_tv" className="live-icon" />
         <h1
           style={{
             fontWeight: "400",
@@ -420,11 +433,11 @@ const ScheduleCard = ({
       <div
         style={{
           position: "absolute",
-          left: type === "primary" ? "-20%" : "0%",
+          left: 0,
           top: "25%",
           height: "50%",
           width: "1%",
-          backgroundColor: type === "primary" ? "red" : "rgba(255,255,255,0.6)",
+          backgroundColor: isActive ? "red" : "rgba(255,255,255,0.6)",
         }}
       />
     </IonRow>

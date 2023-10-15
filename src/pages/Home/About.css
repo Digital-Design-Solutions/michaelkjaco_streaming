@@ -12,6 +12,11 @@
     overflow: hidden;
 }
 
+.live-icon {
+    margin: 15px 0px;
+    max-width: 50px !important;
+}
+
 /* Extra Small (xs) */
 @media (max-width: 576px) {
     .scheduleCardContent {
