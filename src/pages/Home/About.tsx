@@ -65,22 +65,22 @@ export const About = () => {
         }}
       >
         {/* content section */}
-        <IonCol style={{ flex: 1, marginTop: "5%" }}>
+        <IonCol style={{  marginTop: "5%" }} sizeLg="5">
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              maxWidth: "80%",
+              maxWidth: "85%",
             }}
           >
-            <h1>About Intuitive Warrior Channel</h1>
+            <h1 style={{fontSize: '30px', fontWeight: 'bold'}}>About Intuitive Warrior Channel</h1>
             <img
               src={LeaveWings}
               alt="wings_logo"
-              style={{ width: "110px", height: "40px" }}
+              style={{ width: "120px", height: "50px" }}
             />
-            <h3 style={{ fontWeight: "normal", fontSize: "16px" }}>
+            <h3 style={{ fontWeight: "normal", fontSize: "18px", lineHeight: '24px' }}>
               Retired veteran with over 22 years in Naval Special Warfare and
               over two years in Naval Diving and Salvage. Over 11 years as a
               contract and direct contract security operative for US State
@@ -104,15 +104,15 @@ export const About = () => {
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            maxWidth: "60%",
+            maxWidth: "90%",
             justifyContent: "center",
-            marginRight: "-7%",
+            // marginRight: "-4%",
           }}
         >
           <img
             src={MichaelJaco}
             alt="michael_jaco"
-            style={{ width: "65%", height: "auto" }}
+            style={{ width: "100%", height: "auto" }}
           />
         </IonCol>
       </IonRow>
@@ -123,7 +123,7 @@ export const About = () => {
           color: "#fff",
           width: "100vw",
           alignItems: "center",
-          marginTop: "-3%",
+          marginTop: "-30%",
         }}
       >
         <img
