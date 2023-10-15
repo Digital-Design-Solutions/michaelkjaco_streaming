@@ -134,7 +134,7 @@ export const Slider = () => {
 
           <div className="watchmore-btn-outer-container">
             <button className="watchmore-btn-inner-container">
-              <span className="watchmore-btn"></span>
+              <span className="watchmore-btn" />
             </button>
           </div>
         </>

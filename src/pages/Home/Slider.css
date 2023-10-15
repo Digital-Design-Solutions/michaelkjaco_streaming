@@ -24,3 +24,32 @@
 .swiper-button-next, .swiper-button-prev {
   display: none;
 }
+
+.watchmore-btn-outer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.watchmore-btn-inner-container {
+  border-radius: 4px;
+  color: #fff;
+  font-size: 12px;
+  background-color: #1A315C;
+  width: 110px;
+  min-height: 30px;
+}
+
+.watchmore-btn-inner-container::after {
+  content: "WATCH MORE";
+}
+
+.watchmore-btn-inner-container:hover::after {
+  content: "IWC LOGIN";
+}
+
+.watchmore-btn-inner-container:hover {
+  background: #FFA903;
+}
