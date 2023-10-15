@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/michaelkjaco_streaming/static/css/main.72de1b51.css",
-    "main.js": "/michaelkjaco_streaming/static/js/main.9a7c5d64.js",
+    "main.css": "/michaelkjaco_streaming/static/css/main.1f80cc92.css",
+    "main.js": "/michaelkjaco_streaming/static/js/main.f66dd6d6.js",
     "static/js/738.076c7ce2.chunk.js": "/michaelkjaco_streaming/static/js/738.076c7ce2.chunk.js",
     "static/js/858.94a1993f.chunk.js": "/michaelkjaco_streaming/static/js/858.94a1993f.chunk.js",
     "static/js/372.aab60829.chunk.js": "/michaelkjaco_streaming/static/js/372.aab60829.chunk.js",
@@ -20,7 +20,7 @@
     "static/js/103.7e43db91.chunk.js": "/michaelkjaco_streaming/static/js/103.7e43db91.chunk.js",
     "static/media/snow_mountain.png": "/michaelkjaco_streaming/static/media/snow_mountain.c988998666130d4c1d2b.png",
     "static/media/faq_bg.png": "/michaelkjaco_streaming/static/media/faq_bg.df50bbd56aef33bca66a.png",
-    "static/media/home_bg.png": "/michaelkjaco_streaming/static/media/home_bg.68ea5af552d80ce8758a.png",
+    "static/media/home_bg.png": "/michaelkjaco_streaming/static/media/home_bg.94446ed00338d236229d.png",
     "static/media/michael_jaco.png": "/michaelkjaco_streaming/static/media/michael_jaco.eb3a294d8d436df2e9ab.png",
     "static/media/water_wave.png": "/michaelkjaco_streaming/static/media/water_wave.65d8ad05304c7c3518a1.png",
     "static/media/discover_red_tShirt.png": "/michaelkjaco_streaming/static/media/discover_red_tShirt.9560a09138f34fa1a62c.png",
@@ -46,8 +46,8 @@
     "static/media/slider_1.jpeg": "/michaelkjaco_streaming/static/media/slider_1.7ffbef8873d8e7a9ac18.jpeg",
     "static/media/leaves_wings.png": "/michaelkjaco_streaming/static/media/leaves_wings.2bedbfe1975b6d6f1a11.png",
     "index.html": "/michaelkjaco_streaming/index.html",
-    "main.72de1b51.css.map": "/michaelkjaco_streaming/static/css/main.72de1b51.css.map",
-    "main.9a7c5d64.js.map": "/michaelkjaco_streaming/static/js/main.9a7c5d64.js.map",
+    "main.1f80cc92.css.map": "/michaelkjaco_streaming/static/css/main.1f80cc92.css.map",
+    "main.f66dd6d6.js.map": "/michaelkjaco_streaming/static/js/main.f66dd6d6.js.map",
     "738.076c7ce2.chunk.js.map": "/michaelkjaco_streaming/static/js/738.076c7ce2.chunk.js.map",
     "858.94a1993f.chunk.js.map": "/michaelkjaco_streaming/static/js/858.94a1993f.chunk.js.map",
     "372.aab60829.chunk.js.map": "/michaelkjaco_streaming/static/js/372.aab60829.chunk.js.map",
@@ -65,7 +65,7 @@
     "103.7e43db91.chunk.js.map": "/michaelkjaco_streaming/static/js/103.7e43db91.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.72de1b51.css",
-    "static/js/main.9a7c5d64.js"
+    "static/css/main.1f80cc92.css",
+    "static/js/main.f66dd6d6.js"
   ]
 }
