@@ -74,13 +74,13 @@ export const About = () => {
               maxWidth: "85%",
             }}
           >
-            <h1 style={{fontSize: '30px', fontWeight: 'bold'}}>About Intuitive Warrior Channel</h1>
+            <h1 style={{fontSize: '30px', fontWeight: 'bold', fontFamily: "gloucester"}}>About Intuitive Warrior Channel</h1>
             <img
               src={LeaveWings}
               alt="wings_logo"
-              style={{ width: "120px", height: "50px" }}
+              style={{ width: "120px", height: "50px", fontFamily: "NotoNastaliq", color: "#464A53" }}
             />
-            <h3 style={{ fontWeight: "normal", fontSize: "18px", lineHeight: '24px' }}>
+            <h3 style={{ fontWeight: "normal", fontSize: "18px", lineHeight: '30px', fontFamily: "NotoNastaliq", color: "#464A53" }}>
               Retired veteran with over 22 years in Naval Special Warfare and
               over two years in Naval Diving and Salvage. Over 11 years as a
               contract and direct contract security operative for US State
@@ -117,6 +117,7 @@ export const About = () => {
         </IonCol>
       </IonRow>
       <IonRow
+      className="watch-live-content"
         style={{
           position: "relative",
           justifyContent: "space-evenly",
@@ -135,7 +136,7 @@ export const About = () => {
           }}
         />
         <IonCol
-          size-xs="10"
+          size-xs="12"
           size-sm="10"
           size-md="4"
           style={{

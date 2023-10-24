@@ -1,0 +1,14 @@
+To embed your selected fonts into a webpage, copy this code into the <head> of your HTML document
+
+
+Embed Gloucester MT Extra Condensed Regular Font
+
+<link href="https://www.dafontfree.net/embed/Z2xvdWNlc3Rlci1tdC1leHRyYS1jb25kZW5zZWQtcmVndWxhciZkYXRhLzEzL2cvNjQ4NjAvR0xFQ0IuVFRG" rel="stylesheet" type="text/css"/>
+
+Specify in CSS
+Use the following CSS rules to specify these families:
+font-family: 'gloucester-mt-extra-condensed-regular', sans-serif;
+
+
+=============================================================================================================
+

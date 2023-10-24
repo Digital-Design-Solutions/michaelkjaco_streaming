@@ -1,3 +1,43 @@
 * {
-    font-family: "Gloucester MT Extra Condensed', sans-serif" !important;
+    /* font-family: "Gloucester MT Extra Condensed', sans-serif" !important; */
+    font-family: "Gloucester MT Extra Condensed', sans-serif";
 }
+
+@font-face {
+    font-family: gloucester;
+    src: url(./assets/Fonts/gloucester-mt-extra-condensed-regular.TTF);
+  }
+
+  @font-face {
+    font-family: NotoNastaliq;
+    src: url(./assets/Fonts/NotoNastaliqUrdu-Regular.ttf);
+  }
+
+  .header-menu li {
+    padding-right: 15px;
+    text-wrap: wrap;
+  }
+
+@media screen and (max-width: 995px) {
+    .header-logo {
+      justify-content: flex-end!important;
+      margin-top: 45px;
+    }
+    .header-signup {
+        justify-content:flex-end!important;
+        padding-right: 20px;
+    }
+  }
+
+  @media screen and (max-width: 1170px) {
+    .watch-live-content {
+      margin-top: -20%!important;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    .watch-live-content {
+      margin-top: 0%!important;
+    }
+  }
+ 
+  
