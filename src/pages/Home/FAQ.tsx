@@ -42,6 +42,7 @@ export const FAQ = () => {
           flexDirection: "column",
           width: "40%",
         }}
+        className="faq-content"
       >
         <h2>Frequently Asked Questions</h2>
         <img src={LeavesWings} style={{ width: "100px", height: "45px" }} />

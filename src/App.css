@@ -33,6 +33,9 @@
     .watch-live-content {
       margin-top: -20%!important;
     }
+    .faq-content {
+      width: 55%!important;
+    }
   }
   @media screen and (max-width: 800px) {
     .watch-live-content {
