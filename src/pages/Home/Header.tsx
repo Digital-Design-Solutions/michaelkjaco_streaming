@@ -1,6 +1,13 @@
 import React from "react";
-import { IonButton, IonCol, IonHeader, IonIcon, IonRow, useIonRouter } from "@ionic/react";
-import { menu, personCircle, searchCircle } from "ionicons/icons";
+import {
+  IonButton,
+  IonCol,
+  IonHeader,
+  IonIcon,
+  IonRow,
+  useIonRouter,
+} from "@ionic/react";
+import { personCircle, searchCircle } from "ionicons/icons";
 
 import "./Home.css";
 import { useDispatch } from "react-redux";
@@ -28,14 +35,18 @@ export const Header = () => {
         }}
       >
         <IonCol
+          className="header-menu"
           style={{
             listStyle: "none",
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-around",
           }}
+          // sizeLg="5"
+          // sizeSm="12"
           sizeLg="5"
           sizeSm="12"
+          sizeXs="12"
         >
           <li>LIVE SCHEDULE</li>
           <li>IWC MERCH</li>
@@ -46,8 +57,10 @@ export const Header = () => {
         </IonCol>
 
         <IonCol
+          className="header-logo"
           sizeLg="5"
-          sizeSm="0"
+          sizeSm="8"
+          sizeXs="8"
           style={{ display: "flex", alignSelf: "center" }}
         >
           <img
@@ -56,6 +69,7 @@ export const Header = () => {
           />
         </IonCol>
         <IonCol
+          className="header-signup"
           style={{
             listStyle: "none",
             display: "flex",
@@ -64,29 +78,20 @@ export const Header = () => {
             justifyContent: "space-around",
           }}
           sizeLg="2"
-          sizeSm="0"
+          sizeSm="4"
+          sizeXs="4"
         >
           <IonIcon icon={searchCircle} className="nav-icon"></IonIcon>
           <IonIcon icon={personCircle} className="nav-icon"></IonIcon>
-          {/* <div
-              style={{
-                backgroundColor: "#FFA903",
-                borderRadius: "20px",
-                height: "34px",
-                width: "34px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <IonIcon icon={menu} className="menu-icon"></IonIcon>
-            </div> */}
-          <IonButton className="signup-btn"
-          onClick={()=>{
-            dispatch(logoutUser())
-            router.push("/", "root");
-          }}
-          >sign up now</IonButton>
+          <IonButton
+            className="signup-btn"
+            onClick={() => {
+              dispatch(logoutUser());
+              router.push("/", "root");
+            }}
+          >
+            sign up now
+          </IonButton>
         </IonCol>
       </IonRow>
     </IonHeader>
